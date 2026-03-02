@@ -20,4 +20,48 @@
 <body>
 
     <div class="container" id="notice-page">
-        <div class="alert-box">⚠️ 您目前處
+        <div class="alert-box">⚠️ 您目前處於「AI 面試」情境</div>
+        <h2>【 第二階段：閱讀面試通知 】</h2>
+        <p>請仔細閱讀以下通知內容，隨後將進入面試情境。</p>
+        <div class="image-box">
+            <img src="2pic.jpg" alt="AI 面試通知書">
+        </div>
+        <button style="background: #ffc107; color: #000;" onclick="showVideo()">我已閱讀完畢，進入面試</button>
+    </div>
+
+    <div class="container hidden" id="interview-page">
+        <div class="alert-box">⚠️ 提醒：您剛才閱讀的是「AI 面試」通知，請專注觀看以下影片。</div>
+        <h2>【情境 C：AI 面試模式】</h2>
+        <div class="video-box" id="video-container"></div>
+        <button style="background: #007bff;" onclick="goToSurvey()">我已觀看完畢，前往填寫問卷</button>
+    </div>
+
+    <script>
+        function showVideo() {
+            // 確保這些 ID 跟上面的 HTML 完全對應
+            const notice = document.getElementById('notice-page');
+            const interview = document.getElementById('interview-page');
+            const videoContainer = document.getElementById('video-container');
+
+            if (notice && interview && videoContainer) {
+                notice.classList.add('hidden');
+                interview.classList.remove('hidden');
+                
+                // 這裡使用反引號插入影片，請確保 3video.mp4 檔名正確
+                videoContainer.innerHTML = `
+                    <video id="interviewVideo" controls autoplay playsinline preload="auto">
+                        <source src="3video.mp4" type="video/mp4">
+                        您的瀏覽器不支援播放。
+                    </video>
+                `;
+            } else {
+                console.error("找不到頁面元素，請檢查 HTML 中的 ID 設定");
+            }
+        }
+
+        function goToSurvey() {
+            window.location.href = "https://forms.gle/9tcDcCxo2BNmK5mZ9";
+        }
+    </script>
+</body>
+</html>
